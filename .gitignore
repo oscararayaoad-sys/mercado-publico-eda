@@ -1,0 +1,21 @@
+# Datos crudos (públicos, descargables desde ChileCompra — no se versionan por tamaño)
+data/raw/
+data/*.csv
+*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Entornos y sistema
+.DS_Store
+.vscode/
+.idea/
+*.log
