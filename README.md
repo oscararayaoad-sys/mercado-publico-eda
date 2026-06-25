@@ -100,8 +100,14 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 
 ## 👤 Autor
 
-**[Tu nombre]**
-Analista de datos · Santiago, Chile
-[LinkedIn](#) · [GitHub](#) · [correo]
+**Oscar Araya Díaz**
+Analista de Datos · Santiago, Chile 🇨🇱
 
-*Certificación en curso: Google Advanced Data Analytics.*
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oscar-araya-diaz-7a418a170)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/oscararayaoad-sys)
+[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:oscar.araya.oad@gmail.com)
+
+**Certificaciones:**
+- Google Advanced Data Analytics
+- Google Data Analytics
+- Análisis de Datos — AIEP *(en curso, 08-2026)*
