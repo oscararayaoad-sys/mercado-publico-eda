@@ -54,10 +54,21 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 
 ## 📈 Visualizaciones
 
-*(Agregar aquí capturas de los gráficos de Pareto y del dashboard. Ejemplo:)*
+**Gasto por organismo — concentración en la cabeza**
+![Concentración de gasto por organismo](img/pareto_organismo.png)
+*JUNAEB y CENABAST encabezan el gasto y juntos concentran cerca del 30%. La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
 
+**Gasto por categoría — distribuido**
+![Concentración de gasto por categoría](img/pareto_categoria.png)
+*Ninguna categoría domina. El 80% acumulado ni siquiera se alcanza en el top 15, señal de un mercado amplio con múltiples frentes de oportunidad.*
+
+**Gasto por región — fuerte concentración geográfica**
+![Concentración de gasto por región](img/pareto_region.png)
+*La Región Metropolitana concentra el ~62% del gasto. El 80% acumulado se alcanza recién en el top 5: el gasto público está geográficamente concentrado, a diferencia de su distribución por categoría.*
+
+**Gasto por rubro — distribuido**
 ![Concentración de gasto por rubro](img/pareto_rubro.png)
-*Gráfico de Pareto: el gasto por rubro se distribuye entre muchos sectores; el 80% acumulado se alcanza recién cerca del top 14.*
+*El gasto por rubro se reparte entre muchos sectores; el 80% acumulado se alcanza recién cerca del top 14, confirmando un mercado abierto.*
 
 ---
 
