@@ -47,6 +47,7 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 - **Métrica de concentración.** Se construyó un indicador (`pct_lider`: % del gasto que captura el proveedor líder) para distinguir mercados abiertos de cautivos — la clave para responder la pregunta de oportunidades.
 - **Calidad de datos.** Los registros sin clasificar (10,6%) se investigaron por proporción, no por conteo: el patrón resultó ser falla de captura en servicios locales de educación (100% sin clasificar) y opacidad parcial en un organismo de seguridad (Gendarmería, 61%), no confidencialidad generalizada.
 - **Disciplina de trabajo.** *"Diagnosticar antes de corregir"*: cada anomalía se verificó con datos crudos antes de aplicar una corrección, evitando arreglar fantasmas.
+- **Jerarquía de clasificación.** `RubroN1` es la categoría madre y `Categoria` su subdivisión (un rubro agrupa varias categorías). Por eso el gasto se concentra más al agrupar por rubro que por categoría: el mismo dinero se reparte entre más casillas al bajar de nivel. Ambas dimensiones se analizan por separado para no confundir el nivel de agregación.
 
 ---
 
