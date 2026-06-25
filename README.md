@@ -22,8 +22,6 @@ El Estado de Chile compra bienes y servicios por billones de pesos al año a tra
 
 ## 💡 Hallazgos principales
 
-> *(Confirmar las cifras exactas contra la versión final del notebook antes de publicar.)*
-
 **1. El gasto está concentrado en la cabeza y distribuido en la cola.**
 Los dos organismos mayores (JUNAEB y CENABAST) concentran cerca del **30%** del gasto total, y el top 10 alcanza el **~42%**. La gran mayoría de las órdenes son pequeñas; un grupo reducido de órdenes grandes acumula el grueso del dinero.
 
