@@ -97,8 +97,9 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 |---|---|
 | Lenguaje | Python 3.13 |
 | Manipulación de datos | pandas, NumPy |
-| Visualización | Matplotlib, Seaborn |
-| Entorno | Jupyter Notebook, VS Code |
+| Visualización | Matplotlib, Seaborn, **Power BI** |
+| Dashboard | **Power BI Desktop** |
+| Entorno | Jupyter Notebook, VS Code, Git |
 
 ---
 
