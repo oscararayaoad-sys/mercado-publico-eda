@@ -53,6 +53,11 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 
 ## 📈 Visualizaciones
 
+### Dashboard interactivo (Power BI)
+
+![Dashboard del gasto público en Power BI](img/dashboard_powerbi.png)
+*Dashboard interactivo construido en Power BI: gasto total, top 10 organismos, distribución regional en mapa, y filtro por rubro. Al seleccionar un rubro, todos los visuales se recalculan en tiempo real.*
+
 **Gasto por organismo — concentración en la cabeza**
 ![Concentración de gasto por organismo](img/pareto_organismo.png)
 *JUNAEB y CENABAST encabezan el gasto y juntos concentran cerca del 30%. La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
