@@ -55,24 +55,40 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 
 ### Interactive Dashboard (Power BI)
 
-![Public spending dashboard in Power BI](img/dashboard_powerbi.png)  
+![Public spending dashboard in Power BI](assets/dashboard_powerbi.png)  
 *Interactive dashboard built in Power BI: total spending, top 10 agencies, regional distribution on a map, and sector filter. When selecting a sector, all visuals recalculate in real time.*
 
 **Spending by Agency — Head Concentration**  
-![Spending concentration by agency](img/pareto_organismo.png)  
+![Spending concentration by agency](assets/concentración_de_gasto_por_organismo.png)  
 *JUNAEB and CENABAST lead spending, together concentrating about 30%. The curve flattens quickly: few agencies account for a disproportionate share, with a long tail of hundreds of smaller buyers.*
 
 **Spending by Category — Distributed**  
-![Spending concentration by category](img/pareto_categoria.png)  
+![Spending concentration by category](assets/concentración_de_gasto_por_organismo.png)  
 *No single category dominates. The cumulative 80% is not even reached within the top 15, signaling a broad market with multiple fronts of opportunity.*
 
 **Spending by Region — Strong Geographic Concentration**  
-![Spending concentration by region](img/pareto_region.png)  
+![Spending concentration by region](assets/concentración_de_gasto_por_región.png)  
 *The Metropolitan Region concentrates ~62% of spending. The cumulative 80% is reached only in the top 5: public spending is geographically concentrated, unlike its sectoral distribution.*
 
 **Spending by Sector — Distributed**  
-![Spending concentration by sector](img/pareto_rubro.png)  
+![Spending concentration by sector](assets/concentración_de_gasto_por_rubro.png)  
 *Spending by sector is spread across many industries; the cumulative 80% is only reached near the top 14, confirming an open market.*
+
+---
+
+## 💡 Key Findings
+
+**1. Spending is heavily concentrated at the top.**  
+The **Top 10 agencies** account for **84.1%** of total spending, led individually by **CONAF** (19.5%). While transactions are massively fragmented at the operational level (median value of $919.16K CLP), total spending is driven by high-value mega-transactions.
+
+**2. Extreme centralization in the Metropolitan Region.**  
+The **Metropolitan Region** absorbs **96.7%** of recorded spending ($66.82 Quadrillion CLP), heavily influenced by corporate headquarters and ministerial billing biases, leaving only 3.3% distributed across the remaining 15 regions.
+
+**3. Sectoral spending is led by IT and Transportation.**  
+**Information Technology (IT)** leads spending by industry with **42.8%**, while **Transportation & Logistics** is the top single category by volume at **19.2%** ($13.17 Quadrillion CLP). The top 5 sectors concentrate 93.7% of the overall budget.
+
+**4. High spend with few suppliers often signals a closed market.**  
+High-spending sectors with very few suppliers usually represent **captive markets or oligopolies** (e.g., Financial Services, Mining Machinery) with extreme entry barriers. Real opportunities lie in **open/dynamic niches** with high transaction flow and distributed liquidity, such as *Transportation & Storage* ($140.09T/supplier) and *IT & Telecommunications*.
 
 ---
 
@@ -81,9 +97,15 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 ```
 .
 ├── notebooks/
-│   └── 01_carga.ipynb        # Loading, cleaning, and complete analysis
-├── img/                      # Exported charts
-├── data/                     # (excluded: public Mercado Público data)
+│   ├── 01_cleaning_mercado_publico_eda.ipynb        # Loading and cleaning
+│   └── 02_analyze_mercado_publico_eda.ipynb         # Complete analysis
+├── assets/                      # Exported charts
+├── data/                        # (excluded: public Mercado Público data)
+├── dashboard/                   # Power BI dashboard        
+├── reports/  
+│   ├── executive_summary.es.md
+│   └── executive_summary.md
+├── README.es.md
 └── README.md
 ```
 

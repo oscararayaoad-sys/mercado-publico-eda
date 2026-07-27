@@ -4,8 +4,8 @@
 
 Análisis exploratorio (EDA) de ~1,1 millones de órdenes de compra pública del primer trimestre de 2026, orientado a una pregunta de negocio concreta: identificar patrones de gasto, concentración geográfica y nichos de mercado accesibles para un proveedor que busca entrar a la compra pública.
 
-> 🛠️ **Stack:** Python · pandas · NumPy · Matplotlib · Seaborn · Jupyter
-> 📊 **Tipo:** Análisis exploratorio de datos (EDA) con enfoque de negocio
+> 🛠️ **Stack:** Python · pandas · NumPy · Matplotlib · Seaborn · Jupyter  
+> 📊 **Tipo:** Análisis exploratorio de datos (EDA) con enfoque de negocio  
 > 🗂️ **Fuente:** Datos abiertos de Mercado Público (ChileCompra)
 
 ---
@@ -15,24 +15,24 @@ Análisis exploratorio (EDA) de ~1,1 millones de órdenes de compra pública del
 El Estado de Chile compra bienes y servicios por billones de pesos al año a través de Mercado Público. Para un proveedor que quiere venderle al Estado, la pregunta clave es: **¿dónde conviene entrar?** Este proyecto descompone esa pregunta en tres dimensiones:
 
 1. **¿Cómo gasta el Estado?** — ¿de forma concentrada o distribuida?
-2. **¿Dónde gasta?** — distribución por región, rubro y categoría.
+2. **¿Dónde gasta?** — distribución por región, sector y categoría.
 3. **¿Qué oportunidades existen?** — nichos con alto gasto y baja competencia.
 
 ---
 
 ## 💡 Hallazgos principales
 
-**1. El gasto está concentrado en la cabeza y distribuido en la cola.**
-Los dos organismos mayores (JUNAEB y CENABAST) concentran cerca del **30%** del gasto total, y el top 10 alcanza el **~42%**. La gran mayoría de las órdenes son pequeñas; un grupo reducido de órdenes grandes acumula el grueso del dinero.
+**1. El gasto está fuertemente concentrado en los organismos top.**  
+El **Top 10 de organismos** concentra el **84,1%** del gasto total, liderado de manera individual por **CONAF** (19,5%). Aunque a nivel transaccional existe una gran fragmentación operativa (valor mediano de $919,16K CLP), el volumen monetario lo mueven megatransacciones de alto valor.
 
-**2. La Región Metropolitana domina geográficamente.**
-La RM concentra el **~62%** del gasto. El top 5 de regiones alcanza el **~81%**. La concentración geográfica es mucho más fuerte que la concentración por categoría.
+**2. Centralización extrema en la Región Metropolitana.**  
+La **Región Metropolitana** absorbe el **96,7%** del gasto registrado ($66,82 Cuadrillones de CLP), fuertemente influenciada por la facturación centralizada en casas matrices y ministerios, dejando solo un 3,3% distribuido entre las otras 15 regiones.
 
-**3. El gasto por rubro está distribuido, no concentrado.**
-El top 10 de rubros apenas llega al **~74%** del gasto — el umbral del 80% recién se alcanza cerca del top 14. Esto indica un mercado amplio, con múltiples oportunidades en vez de un único sector dominante.
+**3. El gasto por sector está liderado por TI y Transporte.**  
+**Tecnologías de la Información (TI)** lidera por industria con un **42,8%** del gasto, mientras que **Transporte y Logística** es la categoría individual con mayor volumen (**19,2%** / $13,17 Cuadrillones de CLP). Los 5 sectores principales concentran el 93,7% del presupuesto total.
 
-**4. "Pocos proveedores" NO significa oportunidad.**
-El hallazgo más contraintuitivo: los nichos de alto gasto con pocos proveedores resultaron ser **mercados cautivos** (equipamiento nuclear, radioterapia, radioisótopos), con un proveedor líder que captura más del **90%** del gasto — barreras de entrada altas, no oportunidades. Las oportunidades reales están en mercados de gasto alto con competencia media y líder débil (<50%): diagnóstico médico, publicidad, maquinaria forestal.
+**4. Alto gasto con pocos proveedores suele señalar un mercado cerrado.**  
+Los rubros de alto gasto con muy pocos proveedores corresponden a **mercados cautivos u oligopolios** (ej. Servicios Financieros, Maquinaria Minera) con barreras de entrada extremas. Las oportunidades reales están en **nichos abiertos y dinámicos** con alto flujo de órdenes y liquidez distribuida, como *Transporte y Almacenamiento* ($140,09T por proveedor) y *TI y Telecomunicaciones*.
 
 ---
 
@@ -47,7 +47,7 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 - **Métrica de concentración.** Se construyó un indicador (`pct_lider`: % del gasto que captura el proveedor líder) para distinguir mercados abiertos de cautivos — la clave para responder la pregunta de oportunidades.
 - **Calidad de datos.** Los registros sin clasificar (10,6%) se investigaron por proporción, no por conteo: el patrón resultó ser falla de captura en servicios locales de educación (100% sin clasificar) y opacidad parcial en un organismo de seguridad (Gendarmería, 61%), no confidencialidad generalizada.
 - **Disciplina de trabajo.** *"Diagnosticar antes de corregir"*: cada anomalía se verificó con datos crudos antes de aplicar una corrección, evitando arreglar fantasmas.
-- **Jerarquía de clasificación.** `RubroN1` es la categoría madre y `Categoria` su subdivisión (un rubro agrupa varias categorías). Por eso el gasto se concentra más al agrupar por rubro que por categoría: el mismo dinero se reparte entre más casillas al bajar de nivel. Ambas dimensiones se analizan por separado para no confundir el nivel de agregación.
+- **Jerarquía de clasificación.** `RubroN1` es la categoría madre y `Categoria` su subdivisión (un sector agrupa varias categorías). Por eso el gasto se concentra más al agrupar por sector que por categoría: el mismo dinero se reparte entre más casillas al bajar de nivel. Ambas dimensiones se analizan por separado para no confundir el nivel de agregación.
 
 ---
 
@@ -55,24 +55,24 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 
 ### Dashboard interactivo (Power BI)
 
-![Dashboard del gasto público en Power BI](img/dashboard_powerbi.png)
-*Dashboard interactivo construido en Power BI: gasto total, top 10 organismos, distribución regional en mapa, y filtro por rubro. Al seleccionar un rubro, todos los visuales se recalculan en tiempo real.*
+![Dashboard del gasto público en Power BI](assets/dashboard_powerbi.png)  
+*Dashboard interactivo construido en Power BI: gasto total, top 10 organismos, distribución regional en mapa, y filtro por sector. Al seleccionar un sector, todos los visuales se recalculan en tiempo real.*
 
-**Gasto por organismo — concentración en la cabeza**
-![Concentración de gasto por organismo](img/pareto_organismo.png)
-*JUNAEB y CENABAST encabezan el gasto y juntos concentran cerca del 30%. La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
+**Gasto por organismo — concentración en la cabeza**  
+![Concentración de gasto por organismo](assets/concentración_de_gasto_por_organismo.png)  
+*El Top 10 de organismos concentra el 84,1% del gasto, liderado por CONAF (19,5%). La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
 
-**Gasto por categoría — distribuido**
-![Concentración de gasto por categoría](img/pareto_categoria.png)
-*Ninguna categoría domina. El 80% acumulado ni siquiera se alcanza en el top 15, señal de un mercado amplio con múltiples frentes de oportunidad.*
+**Gasto por categoría — distribuido**  
+![Concentración de gasto por categoría](assets/concentración_de_gasto_por_organismo.png)  
+*Transporte y Logística lidera como categoría individual (19,2%). El mapa de categorías muestra dónde se dispersa la liquidez operativa.*
 
-**Gasto por región — fuerte concentración geográfica**
-![Concentración de gasto por región](img/pareto_region.png)
-*La Región Metropolitana concentra el ~62% del gasto. El 80% acumulado se alcanza recién en el top 5: el gasto público está geográficamente concentrado, a diferencia de su distribución por categoría.*
+**Gasto por región — fuerte concentración geográfica**  
+![Concentración de gasto por región](assets/concentración_de_gasto_por_región.png)  
+*La Región Metropolitana concentra el 96,7% del gasto debido al sesgo de facturación centralizada en casas matrices y ministerios.*
 
-**Gasto por rubro — distribuido**
-![Concentración de gasto por rubro](img/pareto_rubro.png)
-*El gasto por rubro se reparte entre muchos sectores; el 80% acumulado se alcanza recién cerca del top 14, confirmando un mercado abierto.*
+**Gasto por sector — concentrado en sectores clave**  
+![Concentración de gasto por sector](assets/concentración_de_gasto_por_rubro.png)  
+*Tecnologías de la Información lidera con el 42,8% del gasto total por industria, y los 5 sectores principales concentran el 93,7% del presupuesto.*
 
 ---
 
@@ -81,9 +81,15 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 ```
 .
 ├── notebooks/
-│   └── 01_carga.ipynb        # Carga, limpieza y análisis completo
-├── img/                      # Gráficos exportados
-├── data/                     # (no incluida: datos públicos de ChileCompra)
+│   ├── 01_cleaning_mercado_publico_eda.ipynb        # Carga y limpieza
+│   └── 02_analyze_mercado_publico_eda.ipynb         # Análisis completo
+├── assets/                      # Gráficos exportados
+├── data/                        # (no incluida: datos públicos de ChileCompra)
+├── dashboard/                   # Dashboard en Power BI        
+├── reports/  
+│   ├── executive_summary.es.md
+│   └── executive_summary.md
+├── README.es.md
 └── README.md
 ```
 
@@ -105,7 +111,7 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 
 ## 👤 Autor
 
-**Oscar Araya Díaz**
+**Oscar Araya Díaz**  
 Analista de Datos · Santiago, Chile 🇨🇱
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oscar-araya-diaz-7a418a170)
