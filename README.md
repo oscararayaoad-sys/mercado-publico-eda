@@ -63,7 +63,7 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 *JUNAEB and CENABAST lead spending, together concentrating about 30%. The curve flattens quickly: few agencies account for a disproportionate share, with a long tail of hundreds of smaller buyers.*
 
 **Spending by Category — Distributed**  
-![Spending concentration by category](assets/concentración_de_gasto_por_organismo.png)  
+![Spending concentration by category](assets/concentración_de_gasto_por_categoría.png)  
 *No single category dominates. The cumulative 80% is not even reached within the top 15, signaling a broad market with multiple fronts of opportunity.*
 
 **Spending by Region — Strong Geographic Concentration**  

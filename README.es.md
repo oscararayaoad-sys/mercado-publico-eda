@@ -63,7 +63,7 @@ Más allá de los resultados, el proyecto documenta el proceso de razonamiento. 
 *El Top 10 de organismos concentra el 84,1% del gasto, liderado por CONAF (19,5%). La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
 
 **Gasto por categoría — distribuido**  
-![Concentración de gasto por categoría](assets/concentración_de_gasto_por_organismo.png)  
+![Concentración de gasto por categoría](assets/concentración_de_gasto_por_categoría.png)  
 *Transporte y Logística lidera como categoría individual (19,2%). El mapa de categorías muestra dónde se dispersa la liquidez operativa.*
 
 **Gasto por región — fuerte concentración geográfica**  
