@@ -55,7 +55,7 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 
 ### Interactive Dashboard (Power BI)
 
-![Public spending dashboard in Power BI](assets/dashboard_demo_mercado_publico_eda.gif.png)[cite: 2]  
+![Public spending dashboard in Power BI](assets/dashboard_demo_mercado_publico_eda.gif)[cite: 2]  
 *Interactive dashboard built in Power BI: total spending, top 10 agencies, regional distribution on a map, and sector filter. When selecting a sector, all visuals recalculate in real time.*[cite: 2]
 
 **Spending by Agency — Head Concentration**  
