@@ -1,124 +1,123 @@
-# Análisis del Gasto Público en Mercado Público de Chile
+# Public Spending Analysis in Chile's Mercado Público
 
-**¿Cómo y dónde gasta el Estado chileno a través de Mercado Público, y dónde están las mejores oportunidades para un proveedor?**
+**How and where does the Chilean State spend through Mercado Público, and where are the best opportunities for a supplier?**
 
-Análisis exploratorio (EDA) de ~1,1 millones de órdenes de compra pública del primer trimestre de 2026, orientado a una pregunta de negocio concreta: identificar patrones de gasto, concentración geográfica y nichos de mercado accesibles para un proveedor que busca entrar a la compra pública.
+Exploratory Data Analysis (EDA) of ~1.1 million public purchase orders from Mercado Público (ChileCompra), structured around a concrete business question: identifying spending patterns, geographic/sectoral concentration, and accessible market niches for new suppliers.
 
-> 🛠️ **Stack:** Python · pandas · NumPy · Matplotlib · Seaborn · Jupyter  
-> 📊 **Tipo:** Análisis exploratorio de datos (EDA) con enfoque de negocio  
-> 🗂️ **Fuente:** Datos abiertos de Mercado Público (ChileCompra)
-
----
-
-## 🎯 La pregunta
-
-El Estado de Chile compra bienes y servicios por billones de pesos al año a través de Mercado Público. Para un proveedor que quiere venderle al Estado, la pregunta clave es: **¿dónde conviene entrar?** Este proyecto descompone esa pregunta en tres dimensiones:
-
-1. **¿Cómo gasta el Estado?** — ¿de forma concentrada o distribuida?
-2. **¿Dónde gasta?** — distribución por región, sector y categoría.
-3. **¿Qué oportunidades existen?** — nichos con alto gasto y baja competencia.
+> 🛠️ **Stack:** Python · pandas · NumPy · Matplotlib · Seaborn · Jupyter · Power BI  
+> 📊 **Type:** Exploratory Data Analysis (EDA) with a business focus & data pedagogy approach  
+> 🗂️ **Source:** Mercado Público Open Data (ChileCompra)
 
 ---
 
-## 💡 Hallazgos principales
+## 🎯 Business Question Framework
 
-**1. El gasto está fuertemente concentrado en los organismos top.**  
-El **Top 10 de organismos** concentra el **84,1%** del gasto total, liderado de manera individual por **CONAF** (19,5%). Aunque a nivel transaccional existe una gran fragmentación operativa (valor mediano de $919,16K CLP), el volumen monetario lo mueven megatransacciones de alto valor.
+To determine where it is worth competing, the core objective is broken down into three fundamental analytical dimensions:
 
-**2. Centralización extrema en la Región Metropolitana.**  
-La **Región Metropolitana** absorbe el **96,7%** del gasto registrado ($66,82 Cuadrillones de CLP), fuertemente influenciada por la facturación centralizada en casas matrices y ministerios, dejando solo un 3,3% distribuido entre las otras 15 regiones.
+### 1. How does the State spend?
+* **1.1 Concentration:** Is spending concentrated among a few agencies or evenly distributed?
+* **1.2 Transactional Structure:** Is spending fragmented (mass low-value POs) or consolidated (large contracts)?
+* **1.3 Competition:** Do de facto monopolies/oligopolies exist, or is the market open to competition?
 
-**3. El gasto por sector está liderado por TI y Transporte.**  
-**Tecnologías de la Información (TI)** lidera por industria con un **42,8%** del gasto, mientras que **Transporte y Logística** es la categoría individual con mayor volumen (**19,2%** / $13,17 Cuadrillones de CLP). Los 5 sectores principales concentran el 93,7% del presupuesto total.
+### 2. Where does the State spend?
+* **2.1 By Sector (`rubro`):** Budget distribution across macro industry sectors.
+* **2.2 By Category (`categoria`):** Granular breakdown by product/service subdivisions.
+* **2.3 By Region (`region_de_compra`):** Geographic spending centralization.
 
-**4. Alto gasto con pocos proveedores suele señalar un mercado cerrado.**  
-Los rubros de alto gasto con muy pocos proveedores corresponden a **mercados cautivos u oligopolios** (ej. Servicios Financieros, Maquinaria Minera) con barreras de entrada extremas. Las oportunidades reales están en **nichos abiertos y dinámicos** con alto flujo de órdenes y liquidez distribuida, como *Transporte y Almacenamiento* ($140,09T por proveedor) y *TI y Telecomunicaciones*.
-
----
-
-## 🔍 Decisiones técnicas destacadas
-
-Más allá de los resultados, el proyecto documenta el proceso de razonamiento. Algunas decisiones que muestran el criterio aplicado:
-
-- **Grano de datos.** Cada fila es un ítem, no una orden. Se distinguió el monto por línea (`totalLineaNeto`) del monto total de la orden (`MontoTotalOC`, que se repite en cada línea) para evitar inflar los totales por doble conteo.
-- **Reconciliación de columnas monetarias.** La brecha ~2x entre ambas columnas se investigó y resultó ser **IVA** (orden = bruto, línea = neto), no un error de datos. Validado mirando órdenes individuales.
-- **Limpieza de datos reales.** Encoding `Latin-1`, separador `;`, coma decimal chilena (`1.234,56`), y verificación de moneda (99,4% CLP) antes de sumar.
-- **Normalización de entidades.** Las regiones venían con **32 etiquetas distintas para 16 regiones reales** (espacios invisibles, homóglifos, nombres cortos vs. largos). Se consolidaron con normalización Unicode y match por palabra clave.
-- **Métrica de concentración.** Se construyó un indicador (`pct_lider`: % del gasto que captura el proveedor líder) para distinguir mercados abiertos de cautivos — la clave para responder la pregunta de oportunidades.
-- **Calidad de datos.** Los registros sin clasificar (10,6%) se investigaron por proporción, no por conteo: el patrón resultó ser falla de captura en servicios locales de educación (100% sin clasificar) y opacidad parcial en un organismo de seguridad (Gendarmería, 61%), no confidencialidad generalizada.
-- **Disciplina de trabajo.** *"Diagnosticar antes de corregir"*: cada anomalía se verificó con datos crudos antes de aplicar una corrección, evitando arreglar fantasmas.
-- **Jerarquía de clasificación.** `RubroN1` es la categoría madre y `Categoria` su subdivisión (un sector agrupa varias categorías). Por eso el gasto se concentra más al agrupar por sector que por categoría: el mismo dinero se reparte entre más casillas al bajar de nivel. Ambas dimensiones se analizan por separado para no confundir el nivel de agregación.
+### 3. What opportunities exist for suppliers?
+* **3.1 Agency Entry Barriers:** Public entities with low supplier diversity.
+* **3.2 False Niche Filtering:** Identifying high-spend categories heavily concentrated among few suppliers (captive markets).
+* **3.3 Dynamic Niches:** Detecting un-saturated sectors with high transactional flow and distributed liquidity.
 
 ---
 
-## 📈 Visualizaciones
+## 💡 Key Findings
 
-### Dashboard interactivo (Power BI)
+1. **Heavy Head Concentration (Extreme Pareto Rule):**
+   * The **Top 10 agencies** account for **84.1%** of total spending.
+   * The **Top 5 agencies** capture **64.6%** of the budget.
+   * **CONAF** leads individually with **19.5%** of recorded expenditure.
+   * Massive operational volume in low-value transactions (median of $919.16K CLP; 75% of POs < $3.07M CLP), but total budget is driven by mega-transactions.
 
-![Dashboard del gasto público en Power BI](assets/dashboard_powerbi.png)  
-*Dashboard interactivo construido en Power BI: gasto total, top 10 organismos, distribución regional en mapa, y filtro por sector. Al seleccionar un sector, todos los visuales se recalculan en tiempo real.*
+2. **Extreme Regional Centralization in Metropolitan Region:**
+   * The **Metropolitan Region** absorbs **96.7%** of recorded spending ($66.82 Quadrillion CLP), heavily influenced by corporate headquarters and ministerial billing biases.
 
-**Gasto por organismo — concentración en la cabeza**  
-![Concentración de gasto por organismo](assets/concentración_de_gasto_por_organismo.png)  
-*El Top 10 de organismos concentra el 84,1% del gasto, liderado por CONAF (19,5%). La curva se aplana rápido: pocos organismos explican una porción desproporcionada, con una cola larga de cientos de compradores menores.*
+3. **Sectoral Dominance in IT and Transportation:**
+   * **IT & Telecommunications** leads sector spending with **42.8%**.
+   * **Passenger Transport & Logistics** is the top single category by volume at **19.2%** ($13.17 Quadrillion CLP).
+   * The top 5 sectors concentrate **93.7%** of the overall budget.
 
-**Gasto por categoría — distribuido**  
-![Concentración de gasto por categoría](assets/concentración_de_gasto_por_categoría.png)  
-*Transporte y Logística lidera como categoría individual (19,2%). El mapa de categorías muestra dónde se dispersa la liquidez operativa.*
-
-**Gasto por región — fuerte concentración geográfica**  
-![Concentración de gasto por región](assets/concentración_de_gasto_por_región.png)  
-*La Región Metropolitana concentra el 96,7% del gasto debido al sesgo de facturación centralizada en casas matrices y ministerios.*
-
-**Gasto por sector — concentrado en sectores clave**  
-![Concentración de gasto por sector](assets/concentración_de_gasto_por_rubro.png)  
-*Tecnologías de la Información lidera con el 42,8% del gasto total por industria, y los 5 sectores principales concentran el 93,7% del presupuesto.*
+4. **Opportunity Matrix: Distinguishing Real Niches from Captive Markets:**
+   * **False Niches:** Sectors like *Financial Services* and *Mining Machinery* feature astronomical spending per supplier ($630.98T CLP and $37.12T CLP respectively), but have only 6 to 8 active suppliers. These are closed oligopolies.
+   * **Real Niches:** *Transportation, Storage & Courier* ($140.09T CLP/supplier across 94 suppliers) and *IT subsectors* display high liquidity with open competition.
 
 ---
 
-## 📂 Estructura del repositorio
+## 🔍 Technical Criteria & Data Engineering Decisions
+
+* **Line vs. Order Granularity:** Each record represents an item line (`total_linea_neto`). This value was isolated from `MontoTotalOC` to prevent double-counting upon aggregation.
+* **Currency & VAT Reconciliation:** Verified currency consistency (99.4% CLP) and reconciled gaps between net and gross order values.
+* **Geographic Entity Normalization:** Consolidated 32 inconsistent regional labels into the 16 official Chilean regions via Unicode normalization and keyword string matching.
+* **Automated Pareto Curves:** Implemented cumulative spending analysis (80/20) to evaluate concentration across agencies, sectors, categories, and regions.
+* **Diagnose Before Fixing:** Verified raw data anomalies before applying fixes, uncovering unclassified data patterns in local public education services and security agencies.
+
+---
+
+## 📈 Visualizations & Pareto Analysis
+
+* **Pareto Chart by Agency:** Illustrates how the Top 10 entities absorb 84.1% of the total budget.
+* **Sector & Category Breakdown:** Highlights IT and Logistics dominance.
+* **Interactive Power BI Dashboard:** Real-time dynamic dashboard for recalculating spending, maps, and supplier distributions.
+
+---
+
+## 📊 Market Opportunity Matrix
+
+| Category / Sector | Market Type | Suppliers | PO Volume | Spend / Supplier | Diagnosis |
+| :--- | :--- | :---: | :---: | :---: | :--- |
+| **Transportation, Storage & Courier** | Open / Dynamic | 94 | 2,101 | **$140.09T CLP** | 🟢 **Niche #1:** High transaction flow and high return per supplier. |
+| **IT & Telecom (Subsector 1782)** | Open / Dynamic | 364 | 2,565 | **$26.33T CLP** | 🟢 **Niche #2:** Highest transactional turnover. |
+| **IT & Telecom (Subsector 1802)** | Competitive / Moderate | 429 | 2,024 | **$28.69T CLP** | 🟢 **Niche #3:** High accumulated liquidity. |
+| **Financial Services / Banking** | Closed / Concentrated | 6 | 11 | **$630.98T CLP** | 🔴 **False Niche:** Institutional banking oligopoly. |
+| **Mining Machinery** | Closed / Concentrated | 8 | 10 | **$37.12T CLP** | 🔴 **False Niche:** Extreme technical exclusivity. |
+
+---
+
+## 📂 Repository Structure
 
 ```
 .
 ├── notebooks/
-│   ├── 01_cleaning_mercado_publico_eda.ipynb        # Carga y limpieza
-│   └── 02_analyze_mercado_publico_eda.ipynb         # Análisis completo
-├── assets/                      # Gráficos exportados
-├── data/                        # (no incluida: datos públicos de ChileCompra)
-├── dashboard/                   # Dashboard en Power BI        
-├── reports/  
+│   ├── 01_cleaning_mercado_publico_eda.ipynb        # Data loading, cleaning & normalization
+│   └── 02_analyze_mercado_publico_eda.ipynb         # Exploratory data & Pareto analysis
+├── assets/                      # Exported charts and GIFs
+├── data/                        # Excluded: Processed Parquet dataset
+├── dashboard/                   # Power BI dashboard file (.pbix)
+├── reports/
 │   ├── executive_summary.es.md
 │   └── executive_summary.md
 ├── README.es.md
 └── README.md
 ```
 
-> Los datos no se incluyen por tamaño; son descargables públicamente desde el portal de datos abiertos de Mercado Público (ChileCompra).
-
 ---
 
-## 🧰 Herramientas
+## 🧰 Tools
 
-| Categoría | Herramientas |
+| Category | Tools |
 |---|---|
-| Lenguaje | Python 3.13 |
-| Manipulación de datos | pandas, NumPy |
-| Visualización | Matplotlib, Seaborn, **Power BI** |
-| Dashboard | **Power BI Desktop** |
-| Entorno | Jupyter Notebook, VS Code, Git |
+| Language | Python 3.13 |
+| Data Manipulation | pandas, NumPy |
+| Visualization | Matplotlib, Seaborn, **Power BI** |
+| Environment | Jupyter Notebook, VS Code, Git |
 
 ---
 
 ## 👤 Autor
 
 **Oscar Araya Díaz**  
-Analista de Datos · Santiago, Chile 🇨🇱
+Data Analyst · Santiago, Chile 🇨🇱
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/oscar-araya-diaz-7a418a170)
 [![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/oscararayaoad-sys)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:oscar.araya.oad@gmail.com)
-
-**Certificaciones:**
-- Google Advanced Data Analytics
-- Google Data Analytics
-- Análisis de Datos — AIEP *(en curso, 08-2026)*
