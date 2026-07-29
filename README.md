@@ -59,19 +59,19 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 *Interactive dashboard built in Power BI: total spending, top 10 agencies, regional distribution on a map, and sector filter. When selecting a sector, all visuals recalculate in real time.*[cite: 2]
 
 **Spending by Agency — Head Concentration**  
-![Spending concentration by agency](concentración_de_gasto_por_organismo.jpg)[cite: 1, 2]  
+![Spending concentration by agency](concentración_de_gasto_por_organismo.png)[cite: 1, 2]  
 *Top 10 agencies account for 84.1% of spending, led by CONAF (19.5%). Nearly two-thirds (64.6%) are executed by just 5 entities.*[cite: 1]
 
 **Spending by Category — Core Priorities**  
-![Spending concentration by category](concentración_de_gasto_por_categoría.jpg)[cite: 1, 2]  
+![Spending concentration by category](concentración_de_gasto_por_categoría.png)[cite: 1, 2]  
 *Top 5 categories represent 74.7% of spend, led by Air Passenger Transport (19.2%) and core IT infrastructure/services.*[cite: 1]
 
 **Spending by Region — Extreme Centralization**  
-![Spending concentration by region](concentración_de_gasto_por_región.jpg)[cite: 1, 2]  
+![Spending concentration by region](concentración_de_gasto_por_región.png)[cite: 1, 2]  
 *The Metropolitan Region concentrates 96.7% of total registered spending, reflecting a heavy corporate invoicing bias.*[cite: 1]
 
 **Spending by Sector — IT Dominance**  
-![Spending concentration by sector](concentración_de_gasto_por_rubro.jpg)[cite: 1, 2]  
+![Spending concentration by sector](concentración_de_gasto_por_rubro.png)[cite: 1, 2]  
 *IT & Telecommunications captures 42.8% of spending alone. The top 5 sectors cover 93.7% of the total budget.*[cite: 1]
 
 ---
@@ -98,9 +98,7 @@ Beyond the results, the project documents the reasoning process. Some decisions 
 ├── assets/                      # Exported charts
 ├── data/                        # (excluded: public Mercado Público data)
 ├── dashboard/                   # Power BI dashboard
-
 ├── reports/
-
 │   ├── executive_summary.es.md
 │   └── executive_summary.md
 ├── README.es.md
