@@ -25,6 +25,5 @@ data/
 
 # Ignorar binarios pesados opcionales
 *.parquet
-*.pbix
 
 echo *.pdf >> .gitignore
